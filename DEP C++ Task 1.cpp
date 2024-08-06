@@ -69,7 +69,7 @@ public:
 
     nlohmann::json fetchWeatherData(const string& location) {
         string url = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + apiKey + "&units=metric";
-        cpr::Response r = cpr::Get(cpr::Url{url});
+        cpr::Response r = cpr::Get(cpr::Url{});
 
         if (r.status_code == 200) {
             return nlohmann::json::parse(r.text);
@@ -87,7 +87,7 @@ public:
             double windSpeed = data["wind"]["speed"];
 
             cout << "Weather Forecast for " << location << ": " << weatherDescription 
-                 << ", Temperature: " << temperature << "°C, Humidity: " << humidity << "%, Wind Speed: " << windSpeed << " m/s" << endl;
+                 << ", Temperature: " << temperature << "Â°C, Humidity: " << humidity << "%, Wind Speed: " << windSpeed << " m/s" << endl;
         } catch (const exception& e) {
             cerr << e.what() << endl;
         }
